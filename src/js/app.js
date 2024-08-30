@@ -2,7 +2,7 @@
 class Character {
     constructor(name) {
         this.name = name;
-        this.attack = 100;
+        this._attack = 100;
     }
     
 }
@@ -10,30 +10,36 @@ class Character {
 class Wizards extends Character {
     constructor(name){
         super(name);
-        this.stoned = false;
+        this._stoned = false;
+        
     }
 
-    setStoned() {
-        this.stoned = true;
+    set stoned(value) {
+        if (value === true || value === false) {
+            this._stoned = value;
+        }
     }
 
-    getStoned() {
-        return this.stoned;
+    get stoned() {
+        return this._stoned;
     }
 
-    setAttack(attackInt) {
-        this.attack = attackInt;
+    set attack(attackInt) {
+        this._attack = attackInt;
     }
 
-    getAttack(range) {
-        let actualAttack ;
+    get attack() {
+        return this._attack;
+    }
+
+    getRangeAttack(range) {
+        let actualAttack;
         if (range === 1) {
             actualAttack = this.attack;
         } else {
             actualAttack = this.attack * (1 - (range - 1) * 0.1);
         }
-
-        if (this.getStoned()){
+        if (this.stoned){
             actualAttack = actualAttack - Math.log2(range) * 5
         }
         return actualAttack;

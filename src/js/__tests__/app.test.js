@@ -2,23 +2,23 @@ import Magician from '../app';
 
 const invoker = new Magician("Invoker");
 
-invoker.setStoned();
+invoker.stoned = true;
 
 test('should decrise attack', () => {
-  const result = invoker.getAttack(2);
+  const result = invoker.getRangeAttack(2);
 
   expect(result).toBe(85);
 });
 
 test('should  attack', () => {
-  const result = invoker.getAttack(1);
+  const result = invoker.getRangeAttack(1);
 
   expect(result).toBe(100);
 });
 
 test('should  set attack', () => {
-  invoker.setAttack(150);
-  const result = invoker.getAttack(1);
+  invoker.attack = 150;
+  const result = invoker.getRangeAttack(1);
 
   expect(result).toBe(150);
 });
