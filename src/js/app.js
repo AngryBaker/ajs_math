@@ -29,15 +29,12 @@ class Wizards extends Character {
     }
 
     get attack() {
-        return this._attack;
-    }
-
-    getRangeAttack(range) {
         let actualAttack;
+        let range = this.range;
         if (range === 1) {
-            actualAttack = this.attack;
+            actualAttack = this._attack;
         } else {
-            actualAttack = this.attack * (1 - (range - 1) * 0.1);
+            actualAttack = this._attack * (1 - (range - 1) * 0.1);
         }
         if (this.stoned){
             actualAttack = actualAttack - Math.log2(range) * 5
